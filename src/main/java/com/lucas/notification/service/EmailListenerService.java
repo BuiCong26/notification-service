@@ -36,15 +36,15 @@ public class EmailListenerService {
             MimeMessageHelper helper = new MimeMessageHelper(mailMessage, true, "UTF-8");
             helper.setFrom("congkhoa51@gmail.com", "Lucas Project");
             helper.setTo(email);
-            helper.setSubject("Mã xác minh tài khoản Lucas Project");
-            helper.setText("Xin chào,\n\nMã xác minh (OTP) của bạn là: " + otp + "\n\nMã này sẽ tự động hết hạn trong vòng 5 phút.");
+            helper.setSubject("OTP verify account of Lucas Project");
+            helper.setText("Hello,\n\nYour (OTP) is: " + otp + "\n\nThis code will automatically expire in 5 minutes.");
 
             // 3. Thực hiện gửi mail
             mailSender.send(mailMessage);
             //System.out.println("Đã gửi Email thành công tới: " + email);
 
         } catch (Exception e) {
-            System.err.println("Lỗi khi xử lý sự kiện gửi mail: " + e.getMessage());
+            throw new RuntimeException("Error when sending email", e);
         }
     }
 }
